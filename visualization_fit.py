@@ -20,15 +20,15 @@ def visualize_fit_n_raw_sub(Y_data_tmp, X_data, beta_subjects, sub_names, filena
         # Column 1
         axs[i, 0].scatter(X_data[0, :8], Y_data_tmp[i, :8], alpha=0.6, color=utils.SUB_COLORS[i])
         axs[i, 0].plot(
-            np.linspace(np.pi/4, 2*np.pi + np.pi/4, 100),
-            topo.mdl1(beta_subjects[i, :], np.linspace(np.pi/4, 2*np.pi + np.pi/4, 100), a=2, d=2),
+            np.linspace(utils.X_RANGE[0], utils.X_RANGE[-1], 100),
+            topo.mdl1(beta_subjects[i, :], np.linspace(utils.X_RANGE[0], utils.X_RANGE[-1], 100), a=2, d=2),
             color=utils.SUB_COLORS[i]
         )
         axs[i, 0].set_ylim([min_val, max_val])
         axs[i, 0].set_ylabel('FLE - ms', fontsize = 18)
         if i == num_subjects-1:
-            axs[i, 0].set_xticks([np.pi/4, np.pi/2, np.pi*(3/4), np.pi, (5/4)*np.pi, 3 * np.pi / 2, (7/4)*np.pi, 2 * np.pi])
-            axs[i, 0].set_xticklabels(['↙', '↓', '↘', '→', '↗', '↑', '↖', '←'])
+            axs[i, 0].set_xticks([2 * np.pi, np.pi/4, np.pi/2, np.pi*(3/4), np.pi, (5/4)*np.pi, 3 * np.pi / 2, (7/4)*np.pi])
+            axs[i, 0].set_xticklabels(['←', '↙', '↓', '↘', '→', '↗', '↑', '↖'])
             axs[i, 0].tick_params(axis='x', labelsize=15)  # Set Y tick fontsize            
             axs[i, 0].set_xlabel('Orientation', fontsize = 18)
         axs[i, 0].text(np.pi/3, max_val-(.2*max_val), f'{sub_names[i]}', fontsize = 18)        
@@ -36,42 +36,42 @@ def visualize_fit_n_raw_sub(Y_data_tmp, X_data, beta_subjects, sub_names, filena
         # Column 2
         axs[i, 1].scatter(X_data[0, 8:16], Y_data_tmp[i, 8:16], alpha=0.6, color=utils.SUB_COLORS[i])
         axs[i, 1].plot(
-            np.linspace(np.pi/4, 2*np.pi + np.pi/4, 100),
-            topo.mdl2(beta_subjects[i, :], np.linspace(np.pi/4, 2*np.pi + np.pi/4, 100), a=2, d=2),
+            np.linspace(utils.X_RANGE[0], utils.X_RANGE[-1], 100),
+            topo.mdl2(beta_subjects[i, :], np.linspace(utils.X_RANGE[0], utils.X_RANGE[-1], 100), a=2, d=2),
             color=utils.SUB_COLORS[i]
         )
         axs[i, 1].set_ylim([min_val, max_val])
         if i == num_subjects-1:
-            axs[i, 1].set_xticks([np.pi/4, np.pi/2, np.pi*(3/4), np.pi, (5/4)*np.pi, 3 * np.pi / 2, (7/4)*np.pi, 2 * np.pi])
-            axs[i, 1].set_xticklabels(['↙', '↓', '↘', '→', '↗', '↑', '↖', '←'])
+            axs[i, 1].set_xticks([2 * np.pi, np.pi/4, np.pi/2, np.pi*(3/4), np.pi, (5/4)*np.pi, 3 * np.pi / 2, (7/4)*np.pi])
+            axs[i, 1].set_xticklabels(['←', '↙', '↓', '↘', '→', '↗', '↑', '↖'])
             axs[i, 1].tick_params(axis='x', labelsize=15)  # Set Y tick fontsize            
             axs[i, 1].set_xlabel('Orientation', fontsize = 18)
             
         # Column 3
         axs[i, 2].scatter(X_data[0, 16:24], Y_data_tmp[i, 16:24], alpha=0.6, color=utils.SUB_COLORS[i])
         axs[i, 2].plot(
-            np.linspace(np.pi/4, 2*np.pi + np.pi/4, 100),
-            topo.mdl3(beta_subjects[i, :], np.linspace(np.pi/4, 2*np.pi + np.pi/4, 100), a=2, d=2),
+            np.linspace(utils.X_RANGE[0], utils.X_RANGE[-1], 100),
+            topo.mdl3(beta_subjects[i, :], np.linspace(utils.X_RANGE[0], utils.X_RANGE[-1], 100), a=2, d=2),
             color=utils.SUB_COLORS[i]
         )
         axs[i, 2].set_ylim([min_val, max_val])
         if i == num_subjects-1:
-            axs[i, 2].set_xticks([np.pi/4, np.pi/2, np.pi*(3/4), np.pi, (5/4)*np.pi, 3 * np.pi / 2, (7/4)*np.pi, 2 * np.pi])
-            axs[i, 2].set_xticklabels(['↙', '↓', '↘', '→', '↗', '↑', '↖', '←'])
+            axs[i, 2].set_xticks([2 * np.pi, np.pi/4, np.pi/2, np.pi*(3/4), np.pi, (5/4)*np.pi, 3 * np.pi / 2, (7/4)*np.pi])
+            axs[i, 2].set_xticklabels(['←', '↙', '↓', '↘', '→', '↗', '↑', '↖'])
             axs[i, 2].tick_params(axis='x', labelsize=15)  # Set Y tick fontsize            
             axs[i, 2].set_xlabel('Orientation', fontsize = 18)
             
         # Column 4
         axs[i, 3].scatter(X_data[0, 24:], Y_data_tmp[i, 24:], alpha=0.6, color=utils.SUB_COLORS[i])
         axs[i, 3].plot(
-            np.linspace(np.pi/4, 2*np.pi + np.pi/4, 100),
-            topo.mdl4(beta_subjects[i, :], np.linspace(np.pi/4, 2*np.pi + np.pi/4, 100), a=2, d=2),
+            np.linspace(utils.X_RANGE[0], utils.X_RANGE[-1], 100),
+            topo.mdl4(beta_subjects[i, :], np.linspace(utils.X_RANGE[0], utils.X_RANGE[-1], 100), a=2, d=2),
             color=utils.SUB_COLORS[i]
         )
         axs[i, 3].set_ylim([min_val, max_val])
         if i == num_subjects-1:
-            axs[i, 3].set_xticks([np.pi/4, np.pi/2, np.pi*(3/4), np.pi, (5/4)*np.pi, 3 * np.pi / 2, (7/4)*np.pi, 2 * np.pi])
-            axs[i, 3].set_xticklabels(['↙', '↓', '↘', '→', '↗', '↑', '↖', '←'])
+            axs[i, 3].set_xticks([2 * np.pi, np.pi/4, np.pi/2, np.pi*(3/4), np.pi, (5/4)*np.pi, 3 * np.pi / 2, (7/4)*np.pi])
+            axs[i, 3].set_xticklabels(['←', '↙', '↓', '↘', '→', '↗', '↑', '↖'])
             axs[i, 3].tick_params(axis='x', labelsize=15)  # Set Y tick fontsize    
             axs[i, 3].set_xlabel('Orientation', fontsize = 18)
         
@@ -102,14 +102,14 @@ def visualize_fit_n_raw_allTogether(Y_data, X_data, beta, filename = None):
     for i in range(num_subjects):
         axs[0].scatter(X_data[i, :8], Y_data[i, :8], alpha=0.6, color=utils.SUB_COLORS[i])
     axs[0].plot(
-        np.linspace(np.pi/4, 2*np.pi + np.pi/4, 100),
-        topo.mdl1(beta, np.linspace(np.pi/4, 2*np.pi + np.pi/4, 100), a=2, d=2),
+        np.linspace(utils.X_RANGE[0], utils.X_RANGE[-1], 100),
+        topo.mdl1(beta, np.linspace(utils.X_RANGE[0], utils.X_RANGE[-1], 100), a=2, d=2),
         color='crimson', lw = 3)
     
     axs[0].set_ylim([min_val, max_val])
     axs[0].set_ylabel('FLE - ms', fontsize = 18)
-    axs[0].set_xticks([np.pi/4, np.pi/2, np.pi*(3/4), np.pi, (5/4)*np.pi, 3 * np.pi / 2, (7/4)*np.pi, 2 * np.pi])
-    axs[0].set_xticklabels(['↙', '↓', '↘', '→', '↗', '↑', '↖', '←'])
+    axs[0].set_xticks([2 * np.pi, np.pi/4, np.pi/2, np.pi*(3/4), np.pi, (5/4)*np.pi, 3 * np.pi / 2, (7/4)*np.pi])
+    axs[0].set_xticklabels(['←', '↙', '↓', '↘', '→', '↗', '↑', '↖'])
     axs[0].tick_params(axis='both', labelsize=15)  # Set Y tick fontsize            
     axs[0].set_xlabel('Orientation', fontsize = 18)    
     axs[0].text(np.pi/3, max_val-(.2*max_val), f'All together', fontsize = 18)        
@@ -118,12 +118,12 @@ def visualize_fit_n_raw_allTogether(Y_data, X_data, beta, filename = None):
     for i in range(num_subjects):
         axs[1].scatter(X_data[i, 8:16], Y_data[i, 8:16], alpha=0.6, color=utils.SUB_COLORS[i])
     axs[1].plot(
-        np.linspace(np.pi/4, 2*np.pi + np.pi/4, 100),
-        topo.mdl2(beta, np.linspace(np.pi/4, 2*np.pi + np.pi/4, 100), a=2, d=2),
+        np.linspace(utils.X_RANGE[0], utils.X_RANGE[-1], 100),
+        topo.mdl2(beta, np.linspace(utils.X_RANGE[0], utils.X_RANGE[-1], 100), a=2, d=2),
         color='crimson', lw = 3)
     axs[1].set_ylim([min_val, max_val])
-    axs[1].set_xticks([np.pi/4, np.pi/2, np.pi*(3/4), np.pi, (5/4)*np.pi, 3 * np.pi / 2, (7/4)*np.pi, 2 * np.pi])
-    axs[1].set_xticklabels(['↙', '↓', '↘', '→', '↗', '↑', '↖', '←'])
+    axs[1].set_xticks([2 * np.pi, np.pi/4, np.pi/2, np.pi*(3/4), np.pi, (5/4)*np.pi, 3 * np.pi / 2, (7/4)*np.pi])
+    axs[1].set_xticklabels(['←', '↙', '↓', '↘', '→', '↗', '↑', '↖'])
     axs[1].tick_params(axis='x', labelsize=15)  # Set Y tick fontsize            
     axs[1].set_xlabel('Orientation', fontsize = 18)    
 
@@ -131,12 +131,12 @@ def visualize_fit_n_raw_allTogether(Y_data, X_data, beta, filename = None):
     for i in range(num_subjects):
         axs[2].scatter(X_data[i, 16:24], Y_data[i, 16:24], alpha=0.6, color=utils.SUB_COLORS[i])
     axs[2].plot(
-        np.linspace(np.pi/4, 2*np.pi + np.pi/4, 100),
-        topo.mdl3(beta, np.linspace(np.pi/4, 2*np.pi + np.pi/4, 100), a=2, d=2),
+        np.linspace(utils.X_RANGE[0], utils.X_RANGE[-1], 100),
+        topo.mdl3(beta, np.linspace(utils.X_RANGE[0], utils.X_RANGE[-1], 100), a=2, d=2),
         color='crimson', lw = 3)
     axs[2].set_ylim([min_val, max_val])
-    axs[2].set_xticks([np.pi/4, np.pi/2, np.pi*(3/4), np.pi, (5/4)*np.pi, 3 * np.pi / 2, (7/4)*np.pi, 2 * np.pi])
-    axs[2].set_xticklabels(['↙', '↓', '↘', '→', '↗', '↑', '↖', '←'])
+    axs[2].set_xticks([2 * np.pi, np.pi/4, np.pi/2, np.pi*(3/4), np.pi, (5/4)*np.pi, 3 * np.pi / 2, (7/4)*np.pi])
+    axs[2].set_xticklabels(['←', '↙', '↓', '↘', '→', '↗', '↑', '↖'])
     axs[2].tick_params(axis='x', labelsize=15)  # Set Y tick fontsize            
     axs[2].set_xlabel('Orientation', fontsize = 18)    
 
@@ -144,12 +144,12 @@ def visualize_fit_n_raw_allTogether(Y_data, X_data, beta, filename = None):
     for i in range(num_subjects):
         axs[3].scatter(X_data[i, 24:], Y_data[i, 24:], alpha=0.6, color=utils.SUB_COLORS[i])
     axs[3].plot(
-        np.linspace(np.pi/4, 2*np.pi + np.pi/4, 100),
-        topo.mdl4(beta, np.linspace(np.pi/4, 2*np.pi + np.pi/4, 100), a=2, d=2),
+        np.linspace(utils.X_RANGE[0], utils.X_RANGE[-1], 100),
+        topo.mdl4(beta, np.linspace(utils.X_RANGE[0], utils.X_RANGE[-1], 100), a=2, d=2),
         color='crimson', lw = 3)
     axs[3].set_ylim([min_val, max_val])
-    axs[3].set_xticks([np.pi/4, np.pi/2, np.pi*(3/4), np.pi, (5/4)*np.pi, 3 * np.pi / 2, (7/4)*np.pi, 2 * np.pi])
-    axs[3].set_xticklabels(['↙', '↓', '↘', '→', '↗', '↑', '↖', '←'])
+    axs[3].set_xticks([2 * np.pi, np.pi/4, np.pi/2, np.pi*(3/4), np.pi, (5/4)*np.pi, 3 * np.pi / 2, (7/4)*np.pi])
+    axs[3].set_xticklabels(['←', '↙', '↓', '↘', '→', '↗', '↑', '↖'])
     axs[3].tick_params(axis='x', labelsize=15)  # Set Y tick fontsize            
     axs[3].set_xlabel('Orientation', fontsize = 18)    
             

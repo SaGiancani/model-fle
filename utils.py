@@ -10,7 +10,7 @@ N_MODELS        = 4
 SUB_COLORS      = ["red", "blue", "green", "gray", "purple", "teal", "gold", "brown", "cyan", 'k']
 SUB_ENUMERATION = [1, 2, 4, 5, 6, 8, 9, 11, 12]
 SUB_NAMES       = [f'S{SUB_ENUMERATION[i]}' if i<len(SUB_ENUMERATION) else 'avg' for i in range(len(SUB_ENUMERATION)+1)]
-X_RANGE         =  np.arange(np.pi/4, 2*np.pi + np.pi/4, np.pi/4)
+X_RANGE         =  np.arange(0, 2*np.pi, np.pi/4)
 
 
 def fit_result_outcome(betas, fit_quality, beta_global, fit_quality_global, filename = 'model_fitting_results.csv'):

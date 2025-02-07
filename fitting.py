@@ -167,7 +167,7 @@ def get_confidence_interval(data, x_data, betas, beta_global, prediction_subs, a
         CovB[i, :, :] = get_covariance_mat(J[i, :, :], resids[i, :])
 
     # Define x_pred at original x_data, at a finer grid
-    xax_pred       = np.linspace(utils.X_RANGE[0], utils.X_RANGE[-1], 100)
+    xax_pred       = np.linspace(utils.X_RANGE[0], utils.X_RANGE[-1]+np.pi/4, 361)
     x_pred_dense   = np.tile(xax_pred, utils.N_MODELS)
     model_id_dense = np.repeat(np.arange(utils.N_MODELS), len(xax_pred))
 
