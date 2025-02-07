@@ -98,3 +98,27 @@ def stat_outcome(ps_single_sub_randomfit, ps_t_single_sub_randomfit, allTog_list
 
     print(f"Results saved to {filename}.csv")
     return
+
+def prediction_outcome(x_preds, y_preds, deltas, sub_names):
+    # Get number of subjects and datapoints
+    num_points = x_preds.shape[1]    # 400 datapoints per subject
+
+    # Repeat subject names for all datapoints
+    subject_column = np.repeat(sub_names, num_points)
+
+    # Flatten matrices to create one long column per variable
+    x_column = x_preds.flatten()
+    y_column = y_preds.flatten()
+    delta_column = deltas.flatten()
+
+    # Create a DataFrame
+    df = pd.DataFrame({'Subject': subject_column,
+                       'X': x_column,
+                       'Y': y_column,
+                       'Delta': delta_column})
+
+    # Save to CSV
+    df.to_csv(os.path.join('data', 'predictions_with_ci.csv'), index=False)
+
+    print("CSV file saved successfully!")
+    return
