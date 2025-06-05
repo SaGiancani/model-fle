@@ -1,0 +1,14 @@
+Comparing VM-foveopetal (0°) and VM-foveofugal (180°) conditions for position [+2°, 0°]
+    All:    	yFPmean=0.28  yFFmean=0.19  	t(9)=1.11  p=0.301144  
+
+Comparing HM-foveopetal (270°) and HM-foveofugal (90°) conditions for position [0°, -2°]
+    All:    	yFPmean=0.30  yFFmean=0.17  	t(9)=3.45  p=0.008707  ***
+
+Comparing 0° orientation and 180° orientation for position [0°, 0°]
+    All:    	yFPmean=0.24  yFFmean=0.19  	t(9)=0.99  p=0.351468  
+
+Comparing VM-foveofugal (180°) for position [+2°, 0°] and VM-foveopetal (0°) for position [0°, 0°]
+    All:    	yFPmean=0.24  yFFmean=0.19  	t(9)=0.81  p=0.443648  
+
+Comparing VM-foveofugal (180°) for position [+2°, 0°] and VM-foveopetal (180°) for position [0°, 0°]
+    All:    	yFPmean=0.19  yFFmean=0.19  	t(9)=0.03  p=0.980403  
