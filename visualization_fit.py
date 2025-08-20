@@ -215,6 +215,75 @@ def visualize_betas(beta_subjects, filename = None, betas_to_plot = ['Offset', '
     plt.show()
     return
 
+
+def visualize_beta_onefigure(beta_subjects, subs, sub_not_sign = []):
+
+    # Data dictionary
+    data = {'Offset': beta_subjects[:, 0],
+            'Fovea': beta_subjects[:, 1],
+            'HM': beta_subjects[:, 2],
+            'VM': beta_subjects[:, 3],
+            'Eccentricity': beta_subjects[:, 4]}
+        
+    non_significant_indices = [i for i, val in enumerate(subs) if val not in sub_not_sign + ['avg']]
+    order_bias = ['Eccentricity', 'VM', 'Fovea', 'HM']
+    
+    # Setup
+    
+    values_matrix = np.array([v for v in data.values()])  # shape: (n_vars, n_subjects)
+    values_matrix = values_matrix[:, :]  # Exclude the last column (avg), shape: (n_vars, n_subjects-1)
+    values_matrix = values_matrix.T        # Now shape: (n_subjects-1, n_vars)
+    
+    plt.figure(figsize=(8, 6))
+    x_labels = order_bias
+    x_pos = np.arange(len(x_labels))
+    plt.hlines(0, x_pos[0], x_pos[-1], color='k', ls='--', lw=2)
+    
+    # Draw subject-wise lines
+    for j, _ in enumerate(values_matrix):
+        color = 'grey' if j in non_significant_indices else '#DCDCDC'
+        if j == len(values_matrix) -1:
+            color = 'k'
+        # plt.plot(x_pos, subj_values, color=color, linewidth=1, alpha=0.3)
+    
+    # Plot scatter dots and labels
+    for i, key in enumerate(order_bias):
+        values = data[key]
+        avg_val = values[-1]
+        subj_vals = values[:-1]
+    
+        for j, val in enumerate(subj_vals):
+            color = 'grey' if j in non_significant_indices else '#DCDCDC'
+            plt.scatter(i, val, color=color, s=60)
+    
+            # if i == 0:
+            sub_name = f's{subs[j]}'
+            plt.text(i + 0.05, val, sub_name, color=color, fontsize=10, va='center')
+    
+        # Average in bold black
+        plt.scatter(i, avg_val, color='k', s=100, zorder=5)
+        if i == 0:
+            tmp_avg = avg_val
+    
+    # Create proxy artists for the legend
+    # legend_elements = [mpatches.Patch(color='grey', label='Non-sign'), 
+    #                    mpatches.Patch(color='#DCDCDC', label='Sign')]
+    
+    # Add the legend
+    # plt.legend(handles=legend_elements,  fontsize=11, title_fontsize=12, loc='upper right')
+    plt.xlim(x_pos[0]-.2, x_pos[-1]+.2)
+    plt.text(0.05, tmp_avg, 'avg', color='k', fontsize=12, va='center')
+    # Aesthetics
+    plt.xticks(x_pos, x_labels, fontsize=12)
+    plt.ylabel("Biases (a.u.)", fontsize=13)
+    plt.title("Biases from geometrical model", fontsize=14)
+    plt.savefig(os.path.join('figures', 'biases_single_plot.png'), dpi = 100, bbox_inches='tight')
+    plt.savefig(os.path.join('figures', 'biases_single_plot.pdf'), dpi = 100, bbox_inches='tight')
+    plt.show()
+    
+    return
+
+
 def visualize_hists(rmses, rsqrs, fit_quality, sub_names = utils.SUB_NAMES, filename = None):
     num_subjects = rmses.shape[0]
     if num_subjects > 1:
